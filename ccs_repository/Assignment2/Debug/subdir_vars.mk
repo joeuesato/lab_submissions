@@ -10,32 +10,44 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../assignment2.c \
-../main.c \
-../tm4c123gh6pm_startup_ccs.c 
+../i2cm_drv.c \
+../tm4c123gh6pm_startup_ccs.c \
+../tmp006.c \
+../uartstdio.c 
 
 C_DEPS += \
 ./assignment2.d \
-./main.d \
-./tm4c123gh6pm_startup_ccs.d 
+./i2cm_drv.d \
+./tm4c123gh6pm_startup_ccs.d \
+./tmp006.d \
+./uartstdio.d 
 
 OBJS += \
 ./assignment2.obj \
-./main.obj \
-./tm4c123gh6pm_startup_ccs.obj 
+./i2cm_drv.obj \
+./tm4c123gh6pm_startup_ccs.obj \
+./tmp006.obj \
+./uartstdio.obj 
 
 OBJS__QUOTED += \
 "assignment2.obj" \
-"main.obj" \
-"tm4c123gh6pm_startup_ccs.obj" 
+"i2cm_drv.obj" \
+"tm4c123gh6pm_startup_ccs.obj" \
+"tmp006.obj" \
+"uartstdio.obj" 
 
 C_DEPS__QUOTED += \
 "assignment2.d" \
-"main.d" \
-"tm4c123gh6pm_startup_ccs.d" 
+"i2cm_drv.d" \
+"tm4c123gh6pm_startup_ccs.d" \
+"tmp006.d" \
+"uartstdio.d" 
 
 C_SRCS__QUOTED += \
 "../assignment2.c" \
-"../main.c" \
-"../tm4c123gh6pm_startup_ccs.c" 
+"../i2cm_drv.c" \
+"../tm4c123gh6pm_startup_ccs.c" \
+"../tmp006.c" \
+"../uartstdio.c" 
 
 

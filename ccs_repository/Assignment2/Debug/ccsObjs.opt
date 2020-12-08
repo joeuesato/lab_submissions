@@ -1,1 +1,1 @@
-"./assignment2.obj" "./main.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"C:/ti/tivaware_c_series_2_1_4_178/driverlib/ccs/Debug/driverlib.lib" 
+"./assignment2.obj" "./i2cm_drv.obj" "./tm4c123gh6pm_startup_ccs.obj" "./tmp006.obj" "./uartstdio.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"C:/ti/tivaware_c_series_2_1_4_178/IQmath/ccs/IQmathLib/Debug/IQmathLib.lib" -l"C:/ti/tivaware_c_series_2_1_4_178/driverlib/ccs/Debug/driverlib.lib" 

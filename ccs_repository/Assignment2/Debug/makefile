@@ -11,11 +11,14 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./assignment2.obj" \
-"./main.obj" \
+"./i2cm_drv.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
+"./tmp006.obj" \
+"./uartstdio.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
+-l"C:/ti/tivaware_c_series_2_1_4_178/IQmath/ccs/IQmathLib/Debug/IQmathLib.lib" \
 -l"C:/ti/tivaware_c_series_2_1_4_178/driverlib/ccs/Debug/driverlib.lib" \
 
 -include ../makefile.init
@@ -157,8 +160,8 @@ Assignment2.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "assignment2.obj" "main.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "assignment2.d" "main.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "assignment2.obj" "i2cm_drv.obj" "tm4c123gh6pm_startup_ccs.obj" "tmp006.obj" "uartstdio.obj" 
+	-$(RM) "assignment2.d" "i2cm_drv.d" "tm4c123gh6pm_startup_ccs.d" "tmp006.d" "uartstdio.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

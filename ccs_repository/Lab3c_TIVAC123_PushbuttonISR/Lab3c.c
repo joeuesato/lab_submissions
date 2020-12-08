@@ -12,7 +12,7 @@
 #include "driverlib/timer.h"    //Defines and macros for Timer API of driverLib.
 
 uint32_t ui32Period;
-;
+
 void GPIOF0IntHandler(void);
 int main(void)
 {
