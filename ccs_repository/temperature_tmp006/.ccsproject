@@ -9,4 +9,5 @@
 	<rts value="libc.a"/>
 	<createSlaveProjects value=""/>
 	<origin value="C:/ti/tivaware_c_series_2_1_4_178/examples/boards/ek-tm4c123gxl-boostxl-senshub/temperature_tmp006/ccs"/>
+	<isTargetManual value="true"/>
 </projectOptions>
