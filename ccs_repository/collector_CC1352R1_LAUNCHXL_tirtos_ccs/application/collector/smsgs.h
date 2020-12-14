@@ -214,6 +214,15 @@ The <b>Sensor Ramp Data Message</b> is defined as:
 /* Max BLE Data Length */
 #define MAX_BLE_DATA_LEN 20
 
+/*! Length of the genericSensor portion of the sensor data message */
+#define SMSGS_SENSOR_GENERIC_LEN 2
+
+/*! Generic Request message length (over-the-air length) */
+#define SMSGS_GENERIC_REQUEST_MSG_LEN 1
+
+/*! Generic Request message length (over-the-air length) */
+#define SMSGS_GENERIC_RESPONSE_MSG_LEN 2
+
 /*!
  Message IDs for Sensor data messages.  When sent over-the-air in a message,
  this field is one byte.
@@ -253,7 +262,11 @@ The <b>Sensor Ramp Data Message</b> is defined as:
     /* Device type request msg */
     Smsgs_cmdIds_DeviceTypeReq = 16,
     /* Device type response msg */
-    Smsgs_cmdIds_DeviceTypeRsp = 17
+    Smsgs_cmdIds_DeviceTypeRsp = 17,
+    /* Generic request msg */
+    Smsgs_cmdIds_genericReq = 18,
+    /* Generic response msg */
+    msgs_cmdIds_genericRsp = 19
 
  } Smsgs_cmdIds_t;
 
@@ -282,6 +295,8 @@ typedef enum
     Smsgs_dataFields_accelSensor = 0x0040,
 #endif /* LPSTK */
     Smsgs_dataFields_bleSensor = 0x0080,
+    /*! Generic Sensor */
+    Smsgs_dataFields_genericSensor = 0x0800,
 } Smsgs_dataFields_t;
 
 /*!
@@ -582,6 +597,15 @@ typedef struct _Smsgs_configsettingsfield_t
 } Smsgs_configSettingsField_t;
 
 /*!
+Generic Sensor Field
+*/
+typedef struct _Smsgs_genericsensorfield_t {
+
+ /*! Raw Sensor Data read out of the generic sensor */
+ uint16_t genericRawData;
+} Smsgs_genericSensorField_t;
+
+/*!
  Sensor Data message: sent from the sensor to the collector
  */
 typedef struct _Smsgs_sensormsg_t
@@ -634,6 +658,11 @@ typedef struct _Smsgs_sensormsg_t
      is set in frameControl.
      */
     Smsgs_bleSensorField_t bleSensor;
+    /*!
+     Generic Sensor field - valid only if Smsgs_dataFields_genericSensor
+     is set in frameControl.
+     */
+    Smsgs_genericSensorField_t genericSensor;
 } Smsgs_sensorMsg_t;
 
 /*!

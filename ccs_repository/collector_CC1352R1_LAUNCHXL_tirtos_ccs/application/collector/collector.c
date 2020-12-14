@@ -1727,6 +1727,11 @@ static void processSensorData(ApiMac_mcpsDataInd_t *pDataInd)
         sensorData.humiditySensor.humidity = Util_buildUint16(pBuf[0], pBuf[1]);
         pBuf += 2;
     }
+    if(sensorData.frameControl & Smsgs_dataFields_genericSensor)
+    {
+        sensorData.genericSensor.genericRawData = Util_buildUint16(pBuf[0], pBuf[1]);
+        pBuf += 2;
+    }
 
     if(sensorData.frameControl & Smsgs_dataFields_msgStats)
     {
@@ -2553,6 +2558,35 @@ static void processConfigRetry(void)
         /* Set config event */
         Csf_setConfigClock(CONFIG_DELAY);
     }
+}
+
+/*! Build and send the generic message to a device Public function defined in collector.h */
+
+Collector_status_t Collector_sendGenericRequest(ApiMac_sAddr_t *pDstAddr)
+{
+  Collector_status_t status = Collector_status_invalid_state; /* Are we in the right state? */
+
+  if(cllcState >= Cllc_states_started)
+  {
+      Llc_deviceListItem_t item;
+       /* Is the device a known device? */
+      if(Csf_getDevice(pDstAddr, &item))
+      {
+          uint8_t buffer[SMSGS_GENERIC_REQUEST_MSG_LEN];
+          /* Build the message */
+          buffer[0] = (uint8_t)Smsgs_cmdIds_genericReq;
+          sendMsg(Smsgs_cmdIds_genericReq, item.devInfo.shortAddress,
+                  item.capInfo.rxOnWhenIdle,
+                  SMSGS_GENERIC_REQUEST_MSG_LEN,
+                  buffer);
+          status = Collector_status_success;
+      }
+      else
+      {
+          status = Collector_status_deviceNotFound;
+      }
+  }
+  return(status);
 }
 
 #ifdef FEATURE_SECURE_COMMISSIONING

@@ -15,50 +15,88 @@ SYSCFG_SRCS += \
 ../collector.syscfg 
 
 C_SRCS += \
-../CC1352R1_LAUNCHXL_fxns.c 
+../CC1352R1_LAUNCHXL_fxns.c \
+./syscfg/ti_devices_config.c \
+./syscfg/ti_radio_config.c \
+./syscfg/ti_drivers_config.c 
 
 GEN_CMDS += \
 ./configPkg/linker.cmd 
 
 GEN_FILES += \
 ./configPkg/linker.cmd \
-./configPkg/compiler.opt 
+./configPkg/compiler.opt \
+./syscfg/ti_devices_config.c \
+./syscfg/ti_radio_config.c \
+./syscfg/ti_drivers_config.c 
 
 GEN_MISC_DIRS += \
 ./configPkg/ \
 ./syscfg/ 
 
 C_DEPS += \
-./CC1352R1_LAUNCHXL_fxns.d 
+./CC1352R1_LAUNCHXL_fxns.d \
+./syscfg/ti_devices_config.d \
+./syscfg/ti_radio_config.d \
+./syscfg/ti_drivers_config.d 
 
 GEN_OPTS += \
 ./configPkg/compiler.opt 
 
 OBJS += \
-./CC1352R1_LAUNCHXL_fxns.obj 
+./CC1352R1_LAUNCHXL_fxns.obj \
+./syscfg/ti_devices_config.obj \
+./syscfg/ti_radio_config.obj \
+./syscfg/ti_drivers_config.obj 
 
 GEN_MISC_FILES += \
-./syscfg/error.h 
+./syscfg/ti_154stack_config.h \
+./syscfg/ti_154stack_features.h \
+./syscfg/ti_radio_config.h \
+./syscfg/ti_drivers_config.h \
+./syscfg/ti_utils_build_linker.cmd.genlibs \
+./syscfg/syscfg_c.rov.xs \
+./syscfg/ti_utils_runtime_model.gv \
+./syscfg/ti_utils_runtime_Makefile 
 
 GEN_MISC_DIRS__QUOTED += \
 "configPkg\" \
 "syscfg\" 
 
 OBJS__QUOTED += \
-"CC1352R1_LAUNCHXL_fxns.obj" 
+"CC1352R1_LAUNCHXL_fxns.obj" \
+"syscfg\ti_devices_config.obj" \
+"syscfg\ti_radio_config.obj" \
+"syscfg\ti_drivers_config.obj" 
 
 GEN_MISC_FILES__QUOTED += \
-"syscfg\error.h" 
+"syscfg\ti_154stack_config.h" \
+"syscfg\ti_154stack_features.h" \
+"syscfg\ti_radio_config.h" \
+"syscfg\ti_drivers_config.h" \
+"syscfg\ti_utils_build_linker.cmd.genlibs" \
+"syscfg\syscfg_c.rov.xs" \
+"syscfg\ti_utils_runtime_model.gv" \
+"syscfg\ti_utils_runtime_Makefile" 
 
 C_DEPS__QUOTED += \
-"CC1352R1_LAUNCHXL_fxns.d" 
+"CC1352R1_LAUNCHXL_fxns.d" \
+"syscfg\ti_devices_config.d" \
+"syscfg\ti_radio_config.d" \
+"syscfg\ti_drivers_config.d" 
 
 GEN_FILES__QUOTED += \
 "configPkg\linker.cmd" \
-"configPkg\compiler.opt" 
+"configPkg\compiler.opt" \
+"syscfg\ti_devices_config.c" \
+"syscfg\ti_radio_config.c" \
+"syscfg\ti_drivers_config.c" 
 
 C_SRCS__QUOTED += \
-"../CC1352R1_LAUNCHXL_fxns.c" 
+"../CC1352R1_LAUNCHXL_fxns.c" \
+"./syscfg/ti_devices_config.c" \
+"./syscfg/ti_radio_config.c" \
+"./syscfg/ti_drivers_config.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../collector.syscfg" 

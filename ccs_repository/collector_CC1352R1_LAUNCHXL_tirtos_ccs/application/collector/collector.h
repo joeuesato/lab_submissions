@@ -98,10 +98,11 @@ extern "C"
 
 /* Default configuration frame control */
 #define CONFIG_FRAME_CONTROL (Smsgs_dataFields_tempSensor | \
-                              Smsgs_dataFields_lightSensor | \
-                              Smsgs_dataFields_humiditySensor | \
-                              Smsgs_dataFields_msgStats | \
-                              Smsgs_dataFields_configSettings)
+                            Smsgs_dataFields_lightSensor | \
+                            Smsgs_dataFields_humiditySensor | \
+                            Smsgs_dataFields_msgStats | \
+                            Smsgs_dataFields_configSettings | \
+                            Smsgs_dataFields_genericSensor)
 
 /*! Collector Status Values */
 typedef enum
@@ -306,6 +307,16 @@ extern Collector_status_t Collector_sendDeviceTypeRequest(
 /*! Generate data of fixed size for power measurement testing */
 extern void generateIndirectRampMsg(void);
 #endif
+
+/*!
+* @brief Build and send the generic message to a device.
+*
+* @param pDstAddr - destination address of the device to send the message
+*
+* @return Collector_status_success, Collector_status_invalid_state
+*         or Collector_status_deviceNotFound
+*/
+extern Collector_status_t Collector_sendGenericRequest(ApiMac_sAddr_t *pDstAddr);
 
 #ifdef __cplusplus
 }

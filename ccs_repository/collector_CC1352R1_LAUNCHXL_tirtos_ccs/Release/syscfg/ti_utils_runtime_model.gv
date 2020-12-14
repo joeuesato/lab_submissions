@@ -38,10 +38,10 @@ digraph Model
     // mod.$name=/ti/drivers/GPIO
     ti_drivers_GPIO -> ti_drivers_Power
     ti_drivers_GPIO -> ti_drivers_Board
-    CONFIG_GPIO_RLED -> CONFIG_PIN_RLED
-    CONFIG_GPIO_GLED -> CONFIG_PIN_GLED
     CONFIG_GPIO_BTN1 -> CONFIG_PIN_BTN1
     CONFIG_GPIO_BTN2 -> CONFIG_PIN_BTN2
+    CONFIG_GPIO_RLED -> CONFIG_PIN_RLED
+    CONFIG_GPIO_GLED -> CONFIG_PIN_GLED
 
     // mod.$name=/ti/drivers/NVS
     CONFIG_NVSINTERNAL -> ti_drivers_Board

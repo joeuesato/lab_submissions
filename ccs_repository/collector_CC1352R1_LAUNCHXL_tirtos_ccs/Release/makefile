@@ -11,6 +11,9 @@ GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
 "./CC1352R1_LAUNCHXL_fxns.obj" \
+"./syscfg/ti_devices_config.obj" \
+"./syscfg/ti_radio_config.obj" \
+"./syscfg/ti_drivers_config.obj" \
 "./application/collector/collector.obj" \
 "./application/collector/csf.obj" \
 "./application/collector/link_controller/cllc.obj" \
@@ -25,9 +28,9 @@ ORDERED_OBJS += \
 "./software_stack/ti15_4stack/nv/nvocmp.obj" \
 "../cc13x2lp.cmd" \
 $(GEN_CMDS__FLAG) \
--l"/source/ti/ti154stack/library/tirtos/ccs/timac_rom_PG2_0_rom_api_linker.cmd" \
+-l"C:/ti/simplelink_cc13x2_26x2_sdk_4_30_00_54/source/ti/ti154stack/library/tirtos/ccs/timac_rom_PG2_0_rom_api_linker.cmd" \
 -l"C:/Users/uesatj1/Documents/GitHub/lab_submissions/ccs_repository/collector_CC1352R1_LAUNCHXL_tirtos_ccs/Release/syscfg/ti_utils_build_linker.cmd.genlibs" \
--l"/source/ti/devices/cc13x2_cc26x2/driverlib/bin/ccs/driverlib.lib" \
+-l"C:/ti/simplelink_cc13x2_26x2_sdk_4_30_00_54/source/ti/devices/cc13x2_cc26x2/driverlib/bin/ccs/driverlib.lib" \
 -llibc.a \
 
 -include ../makefile.init
@@ -169,7 +172,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 collector_CC1352R1_LAUNCHXL_tirtos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/bin/armcl" --cmd_file="C:/Users/uesatj1/Documents/GitHub/lab_submissions/ccs_repository/collector_CC1352R1_LAUNCHXL_tirtos_ccs/application/defines/collector.opts"  -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O4 --opt_for_speed=0 --define=TIMAC_ROM_IMAGE_BUILD --define=Board_EXCLUDE_NVS_EXTERNAL_FLASH --define=DeviceFamily_CC13X2 -g --c99 --plain_char=unsigned --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --embedded_constants=on --unaligned_access=on --enum_type=packed --wchar_t=16 --common=on --fp_reassoc=off --sat_reassoc=off -z -m"collector_CC1352R1_LAUNCHXL_tirtos_ccs.map" -i"/source" -i"/kernel/tirtos/packages" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/lib" --reread_libs --define=NVOCMP_NVPAGES=4 --diag_wrap=off --display_error_number --warn_sections --xml_link_info="collector_CC1352R1_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model --unused_section_elimination=on -o "collector_CC1352R1_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/bin/armcl" --cmd_file="C:/Users/uesatj1/Documents/GitHub/lab_submissions/ccs_repository/collector_CC1352R1_LAUNCHXL_tirtos_ccs/application/defines/collector.opts"  -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O4 --opt_for_speed=0 --define=TIMAC_ROM_IMAGE_BUILD --define=Board_EXCLUDE_NVS_EXTERNAL_FLASH --define=DeviceFamily_CC13X2 -g --c99 --plain_char=unsigned --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --embedded_constants=on --unaligned_access=on --enum_type=packed --wchar_t=16 --common=on --fp_reassoc=off --sat_reassoc=off -z -m"collector_CC1352R1_LAUNCHXL_tirtos_ccs.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_4_30_00_54/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_4_30_00_54/kernel/tirtos/packages" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/lib" --reread_libs --define=NVOCMP_NVPAGES=4 --diag_wrap=off --display_error_number --warn_sections --xml_link_info="collector_CC1352R1_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model --unused_section_elimination=on -o "collector_CC1352R1_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -185,8 +188,8 @@ collector_CC1352R1_LAUNCHXL_tirtos_ccs.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "CC1352R1_LAUNCHXL_fxns.obj" "application\collector\collector.obj" "application\collector\csf.obj" "application\collector\link_controller\cllc.obj" "application\cui\cui.obj" "application\main.obj" "software_stack\ti15_4stack\mac\api_mac.obj" "software_stack\ti15_4stack\mac\macTask.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_cfg.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_settings.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_user_config.obj" "software_stack\ti15_4stack\nv\crc.obj" "software_stack\ti15_4stack\nv\nvocmp.obj" 
-	-$(RM) "CC1352R1_LAUNCHXL_fxns.d" "application\collector\collector.d" "application\collector\csf.d" "application\collector\link_controller\cllc.d" "application\cui\cui.d" "application\main.d" "software_stack\ti15_4stack\mac\api_mac.d" "software_stack\ti15_4stack\mac\macTask.d" "software_stack\ti15_4stack\mac\mac_settings\mac_cfg.d" "software_stack\ti15_4stack\mac\mac_settings\mac_settings.d" "software_stack\ti15_4stack\mac\mac_settings\mac_user_config.d" "software_stack\ti15_4stack\nv\crc.d" "software_stack\ti15_4stack\nv\nvocmp.d" 
+	-$(RM) "CC1352R1_LAUNCHXL_fxns.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "application\collector\collector.obj" "application\collector\csf.obj" "application\collector\link_controller\cllc.obj" "application\cui\cui.obj" "application\main.obj" "software_stack\ti15_4stack\mac\api_mac.obj" "software_stack\ti15_4stack\mac\macTask.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_cfg.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_settings.obj" "software_stack\ti15_4stack\mac\mac_settings\mac_user_config.obj" "software_stack\ti15_4stack\nv\crc.obj" "software_stack\ti15_4stack\nv\nvocmp.obj" 
+	-$(RM) "CC1352R1_LAUNCHXL_fxns.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "application\collector\collector.d" "application\collector\csf.d" "application\collector\link_controller\cllc.d" "application\cui\cui.d" "application\main.d" "software_stack\ti15_4stack\mac\api_mac.d" "software_stack\ti15_4stack\mac\macTask.d" "software_stack\ti15_4stack\mac\mac_settings\mac_cfg.d" "software_stack\ti15_4stack\mac\mac_settings\mac_settings.d" "software_stack\ti15_4stack\mac\mac_settings\mac_user_config.d" "software_stack\ti15_4stack\nv\crc.d" "software_stack\ti15_4stack\nv\nvocmp.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

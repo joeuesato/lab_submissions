@@ -118,14 +118,14 @@ const UDMACC26XX_Config UDMACC26XX_config[1] = {
  *  Array of Pin configurations
  */
 GPIO_PinConfig gpioPinConfigs[] = {
-    /* CONFIG_GPIO_RLED : LaunchPad LED Red */
-    GPIOCC26XX_DIO_06 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
-    /* CONFIG_GPIO_GLED : LaunchPad LED Green */
-    GPIOCC26XX_DIO_07 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
     /* CONFIG_GPIO_BTN1 : LaunchPad Button BTN-1 (Left) */
     GPIOCC26XX_DIO_15 | GPIO_CFG_IN_PU | GPIO_CFG_IN_INT_FALLING,
     /* CONFIG_GPIO_BTN2 : LaunchPad Button BTN-2 (Right) */
     GPIOCC26XX_DIO_14 | GPIO_CFG_IN_PU | GPIO_CFG_IN_INT_FALLING,
+    /* CONFIG_GPIO_RLED : LaunchPad LED Red */
+    GPIOCC26XX_DIO_06 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
+    /* CONFIG_GPIO_GLED : LaunchPad LED Green */
+    GPIOCC26XX_DIO_07 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
 };
 
 /*
@@ -137,20 +137,20 @@ GPIO_PinConfig gpioPinConfigs[] = {
  *  (GPIO.optimizeCallbackTableSize = true)
  */
 GPIO_CallbackFxn gpioCallbackFunctions[] = {
-    /* CONFIG_GPIO_RLED : LaunchPad LED Red */
-    NULL,
-    /* CONFIG_GPIO_GLED : LaunchPad LED Green */
-    NULL,
     /* CONFIG_GPIO_BTN1 : LaunchPad Button BTN-1 (Left) */
     NULL,
     /* CONFIG_GPIO_BTN2 : LaunchPad Button BTN-2 (Right) */
     NULL,
+    /* CONFIG_GPIO_RLED : LaunchPad LED Red */
+    NULL,
+    /* CONFIG_GPIO_GLED : LaunchPad LED Green */
+    NULL,
 };
 
-const uint_least8_t CONFIG_GPIO_RLED_CONST = CONFIG_GPIO_RLED;
-const uint_least8_t CONFIG_GPIO_GLED_CONST = CONFIG_GPIO_GLED;
 const uint_least8_t CONFIG_GPIO_BTN1_CONST = CONFIG_GPIO_BTN1;
 const uint_least8_t CONFIG_GPIO_BTN2_CONST = CONFIG_GPIO_BTN2;
+const uint_least8_t CONFIG_GPIO_RLED_CONST = CONFIG_GPIO_RLED;
+const uint_least8_t CONFIG_GPIO_GLED_CONST = CONFIG_GPIO_GLED;
 
 /*
  *  ======== GPIOCC26XX_config ========
@@ -238,14 +238,14 @@ const PIN_Config BoardGpioInitTable[CONFIG_PIN_COUNT + 1] = {
     CONFIG_PIN_UART_TX | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* XDS110 UART, Parent Signal: CONFIG_DISPLAY_UART RX, (DIO12) */
     CONFIG_PIN_UART_RX | PIN_INPUT_EN | PIN_PULLDOWN | PIN_IRQ_DIS,
-    /* LaunchPad LED Red, Parent Signal: CONFIG_GPIO_RLED GPIO Pin, (DIO6) */
-    CONFIG_PIN_RLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
-    /* LaunchPad LED Green, Parent Signal: CONFIG_GPIO_GLED GPIO Pin, (DIO7) */
-    CONFIG_PIN_GLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* LaunchPad Button BTN-1 (Left), Parent Signal: CONFIG_GPIO_BTN1 GPIO Pin, (DIO15) */
     CONFIG_PIN_BTN1 | PIN_INPUT_EN | PIN_PULLUP | PIN_IRQ_DIS,
     /* LaunchPad Button BTN-2 (Right), Parent Signal: CONFIG_GPIO_BTN2 GPIO Pin, (DIO14) */
     CONFIG_PIN_BTN2 | PIN_INPUT_EN | PIN_PULLUP | PIN_IRQ_DIS,
+    /* LaunchPad LED Red, Parent Signal: CONFIG_GPIO_RLED GPIO Pin, (DIO6) */
+    CONFIG_PIN_RLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* LaunchPad LED Green, Parent Signal: CONFIG_GPIO_GLED GPIO Pin, (DIO7) */
+    CONFIG_PIN_GLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
 
     PIN_TERMINATE
 };
@@ -550,13 +550,13 @@ void Board_init(void)
     /* ==== /ti/drivers/Power initialization ==== */
     Power_init();
 
-    /* ==== /ti/devices/CCFGTemplate initialization ==== */
-
     /* ==== /ti/drivers/PIN initialization ==== */
     if (PIN_init(BoardGpioInitTable) != PIN_SUCCESS) {
         /* Error with PIN_init */
         while (1);
     }
+    /* ==== /ti/devices/CCFGTemplate initialization ==== */
+
     /* ==== /ti/drivers/RF initialization ==== */
 
 

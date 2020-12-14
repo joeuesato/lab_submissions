@@ -279,6 +279,10 @@ static uint16_t SelectedSensor;
 static uint32_t reportInterval;
 static uint8_t Csf_sensorAction;
 
+uint32_t collectorStatusLine;
+uint32_t deviceStatusLine;
+uint32_t numJoinDevStatusLine;
+uint32_t genericStatusLine;
 
 /******************************************************************************
  Local function prototypes
@@ -448,9 +452,9 @@ void Csf_init(void *sem)
 
     strncpy(clientParams.clientName, "154 Collector", MAX_CLIENT_NAME_LEN);
 #ifdef LPSTK
-    clientParams.maxStatusLines = 4;
+    clientParams.maxStatusLines = 5;
 #else
-    clientParams.maxStatusLines = 3;
+    clientParams.maxStatusLines = 4;
 #endif
 
 #ifdef FEATURE_SECURE_COMMISSIONING
@@ -511,6 +515,7 @@ void Csf_init(void *sem)
     CUI_statusLineResourceRequest(csfCuiHndl, "LPSTK Data", true, &lpstkDataStatusLine);
 #endif /* LPSTK */
     CUI_statusLineResourceRequest(csfCuiHndl, "Number of Joined Devices", false, &numJoinDevStatusLine);
+    CUI_statusLineResourceRequest(csfCuiHndl, "Generic Cnt", true, &genericStatusLine);
 
 #if !defined(AUTO_START)
     CUI_statusLinePrintf(csfCuiHndl, collectorStatusLine, "Waiting...");
@@ -855,8 +860,13 @@ void Csf_deviceSensorDataUpdate(ApiMac_sAddr_t *pSrcAddr, int8_t rssi,
     }
     else
     {
-        CUI_statusLinePrintf(csfCuiHndl, deviceStatusLine, "Sensor - Addr=0x%04x, Temp=%d, RSSI=%d",
-                             pSrcAddr->addr.shortAddr, pMsg->tempSensor.ambienceTemp, rssi);
+        CUI_statusLinePrintf(csfCuiHndl, deviceStatusLine, "Sensor - Addr=0x%04x, Temp=%d, Humidity=%d, Light=%d, RSSI=%d",
+                       pSrcAddr->addr.shortAddr,
+                       pMsg->humiditySensor.temp,
+                       pMsg->humiditySensor.humidity,
+                       pMsg->lightSensor.rawData,
+                       rssi);
+        CUI_statusLinePrintf(csfCuiHndl, genericStatusLine, "%d", pMsg->genericSensor);
 #ifdef LPSTK
         CUI_statusLinePrintf(csfCuiHndl, lpstkDataStatusLine, "Humid=%d, Light=%d, Accl=(%d, %d, %d, %d, %d)",
                              pMsg->humiditySensor.humidity, pMsg->lightSensor.rawData,
